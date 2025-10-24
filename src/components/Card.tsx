@@ -2,8 +2,7 @@
 function Card() {
   return (
     <div>
-      <h1>hi</h1>
-      <p>Nima gap </p>
+      <h3>nj</h3>
     </div>
   )
 }
