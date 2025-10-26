@@ -17,7 +17,7 @@ function Navbar() {
               isActive ? `${linkClass} ${activeClass}` : linkClass
             }
           >
-              Home
+             Home
           </NavLink>
         </li>
         <li>
