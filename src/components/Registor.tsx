@@ -11,7 +11,7 @@ function Registor() {
                    hover:after:w-full after:transition-all after:duration-300
                    hover:text-blue-600 transition-colors duration-300"
       >
-        Index page
+        Index page otish
       </Link>
     </div>
   );
