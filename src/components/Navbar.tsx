@@ -17,7 +17,7 @@ function Navbar() {
               isActive ? `${linkClass} ${activeClass}` : linkClass
             }
           >
-             Home
+            Home
           </NavLink>
         </li>
         <li>
@@ -27,7 +27,7 @@ function Navbar() {
               isActive ? `${linkClass} ${activeClass}` : linkClass
             }
           >
-             Xokozo
+            Xokozo
           </NavLink>
         </li>
         <li>
@@ -37,7 +37,7 @@ function Navbar() {
               isActive ? `${linkClass} ${activeClass}` : linkClass
             }
           >
-             Abzor
+            Abzor
           </NavLink>
         </li>
         <li>

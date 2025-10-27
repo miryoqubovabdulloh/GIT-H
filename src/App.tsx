@@ -15,11 +15,11 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="index" element={<Index />} />
-          <Route path="card" element={<Card />} />
-          <Route path="registor" element={<Registor />} />
-        </Routes>    
+        <Route path="/" element={<Home />} />
+        <Route path="index" element={<Index />} />
+        <Route path="card" element={<Card />} />
+        <Route path="registor" element={<Registor />} />
+      </Routes>
     </div>
   )
 }
