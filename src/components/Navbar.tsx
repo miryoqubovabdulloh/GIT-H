@@ -40,6 +40,16 @@ function Navbar() {
             Abzor
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="contact"
+            className={({ isActive }) =>
+              isActive ? `${linkClass} ${activeClass}` : linkClass
+            }
+          >
+            Contact
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
