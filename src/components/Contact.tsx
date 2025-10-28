@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact() {
   const tariffs = [
@@ -41,15 +43,25 @@ export default function Contact() {
   ];
 
   const [selected, setSelected] = useState<number | null>(null);
-  const [calledDriver, setCalledDriver] = useState<string | null>(null);
+  const [likedDrivers, setLikedDrivers] = useState<string[]>([]);
 
   const handleSelect = (id: number) => {
     setSelected(selected === id ? null : id);
-    setCalledDriver(null); // boshqa tarif bosilganda xabar o‘chadi
   };
 
-  const handleCall = (name: string) => {
-    setCalledDriver(name);
+  const handleCall = (driverName: string) => {
+    toast.success(`${driverName} sizning manzilingizga yo‘l oldi 🚕`, {
+      position: "top-center",
+      autoClose: 2500,
+    });
+  };
+
+  const handleLike = (driverName: string) => {
+    setLikedDrivers((prev) =>
+      prev.includes(driverName)
+        ? prev.filter((n) => n !== driverName)
+        : [...prev, driverName]
+    );
   };
 
   return (
@@ -62,7 +74,7 @@ export default function Contact() {
           <div
             key={tariff.id}
             onClick={() => handleSelect(tariff.id)}
-            className={`p-4 rounded-xl border cursor-pointer transition duration-200 shadow-sm hover:shadow-md ${
+            className={`p-4 rounded-xl border cursor-pointer transition duration-200 ${
               selected === tariff.id
                 ? "border-blue-500 bg-blue-50"
                 : "border-gray-300 bg-white"
@@ -76,7 +88,7 @@ export default function Contact() {
 
       {/* Haydovchilar */}
       {selected && (
-        <div className="mt-8 w-full max-w-md bg-white border border-gray-200 rounded-xl p-4 shadow-lg">
+        <div className="mt-8 w-full max-w-md bg-white border border-gray-200 rounded-xl p-4 shadow">
           {tariffs
             .find((t) => t.id === selected)
             ?.drivers.map((driver, index) => (
@@ -93,23 +105,32 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handleCall(driver.name)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 py-1 rounded-md"
-                >
-                  🚕 Chaqarish
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleCall(driver.name)}
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded-lg text-sm flex items-center gap-1"
+                  >
+                    🚕 Chaqirish
+                  </button>
+
+                  <button
+                    onClick={() => handleLike(driver.name)}
+                    className={`${
+                      likedDrivers.includes(driver.name)
+                        ? "bg-yellow-400 text-white"
+                        : "bg-gray-200 text-gray-700"
+                    } px-3 py-1.5 rounded-lg text-sm`}
+                  >
+                    ⭐
+                  </button>
+                </div>
               </div>
             ))}
         </div>
       )}
 
-      {/* Chaqirilgan haydovchi xabari */}
-      {calledDriver && (
-        <div className="mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-lg shadow">
-          ✅ {calledDriver} chaqirildi!
-        </div>
-      )}
+      {/* Toast */}
+      <ToastContainer />
     </div>
   );
 }
